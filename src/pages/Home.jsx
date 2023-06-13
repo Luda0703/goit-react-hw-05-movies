@@ -1,17 +1,45 @@
-// import { useEffect } from "react";
+import { useState, useEffect, useRef} from "react";
+import getMovies from "servise/servise";
+import { Loader } from "components/Loader/Loader";
+import MovieList from "components/MovieList/MovieList";
 
 
 const Home = () => {
-    // useEffect(() => {
+    const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false); 
+    const [error, setError] = useState(null);
 
-    // })
+    const isFirstRender = useRef(true);
+    
+
+    useEffect(() => {
+        if(isFirstRender.current) {
+           isFirstRender.current = false;
+           return ;
+        }
+
+        const getSearchMovies = async () => {
+            setIsLoading (true);
+            try {
+                const data = await getMovies();
+                setMovies(data.results);
+            } catch (error) {
+                setError(error.massage);
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        getSearchMovies()
+    }, [])
+
     return (
         <>
-        <div>Home</div>
+        {movies && <MovieList movies={movies} />}
+        {isLoading && <Loader/>}
+        {error && <div>{error}</div>}
         </>
     )
 }
 
 export default Home;
 
-// key ab2cf7e1a236e63f2cc161486f07b55f
