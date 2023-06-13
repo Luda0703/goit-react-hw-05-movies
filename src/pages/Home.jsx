@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef} from "react";
-import getMovies from "servise/servise";
+import { getMovies } from "servise/servise";
 import { Loader } from "components/Loader/Loader";
 import MovieList from "components/MovieList/MovieList";
 
