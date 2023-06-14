@@ -17,3 +17,10 @@ export async function getMoviesQuery(query) {
   );
   return responce.data;
 }
+
+export async function getMoviesDetails(id) {
+  const responce = await axios.get(
+    `${BASE_URL}/search/movie${id}?api_key=${KEY}`
+  );
+  return responce.data;
+}

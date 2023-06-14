@@ -2,8 +2,9 @@ import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const MovieList = ({ movies }) => {
-   const location = useLocation()
-//   console.log({movies})
+   const location = useLocation();
+   
+  console.log({movies})
   return (
     <>
       <ul>

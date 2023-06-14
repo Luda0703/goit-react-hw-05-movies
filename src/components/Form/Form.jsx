@@ -11,14 +11,11 @@ const Form = ({setSearchParams}) => {
             return;
           }
         setSearchParams({ query });
-        // setQuery('');
     }
 
     const handleChange = (e) => {
         setQuery(e.currentTarget.value.toLowerCase())
     }
-
-
 
     return (
         <form onSubmit={handleSubmit}>

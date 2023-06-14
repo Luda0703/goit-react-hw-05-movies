@@ -37,7 +37,7 @@ const Movies = () => {
     return (
         <>
         <Form setSearchParams={setSearchParams}/>
-        {movies && <MovieList movies={movies}/>}
+        {movies.length > 0 && <MovieList movies={movies}/>}
         {isLoading && <Loader/>}
         {error && <div>{error}</div>}
         </>
