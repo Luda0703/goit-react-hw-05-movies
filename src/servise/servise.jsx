@@ -11,9 +11,10 @@ export async function getMovies(page=1) {
 }
 
 
-export async function getMoviesQuery(query) {
+export async function getMoviesQuery(query, page=1) {
   const responce = await axios.get(
-    `${BASE_URL}search/movie?api_key=${KEY}&query=${query}&language=en-US&page=1&include_adult=false`
+    `${BASE_URL}search/movie?api_key=${KEY}&query=${query}&language=en-US&page=${page}&include_adult=false`
   );
+  console.log(responce.data)
   return responce.data;
 }
