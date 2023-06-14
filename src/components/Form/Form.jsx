@@ -1,17 +1,24 @@
 import { useState } from "react";
-// import Notiflix from 'notiflix';
+import Notiflix from 'notiflix';
 
-const Form = ({setSearch}) => {
+const Form = ({setSearchParams}) => {
     const [query, setQuery] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSearch({ query });
+        if (query.trim() === '') {
+            Notiflix.Notify.info('Please enter your query!');
+            return;
+          }
+        setSearchParams({ query });
+        // setQuery('');
     }
 
     const handleChange = (e) => {
-        setQuery(e.currentTarget.value.toLowerCase().trim())
+        setQuery(e.currentTarget.value.toLowerCase())
     }
+
+
 
     return (
         <form onSubmit={handleSubmit}>

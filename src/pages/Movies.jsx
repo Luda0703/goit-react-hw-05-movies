@@ -11,10 +11,10 @@ const Movies = () => {
     const [isLoading, setIsLoading] = useState(false); 
     const [error, setError] = useState(null); 
 
-    const [search, setSearch] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        const currentQuery = search.get('query');
+        const currentQuery = searchParams.get('query');
         // console.log({currentQuery})
         if (!currentQuery) return;
 
@@ -30,13 +30,13 @@ const Movies = () => {
             }
         }
         serchMovies()
-    }, [search])
+    }, [searchParams])
 
 
 
     return (
         <>
-        <Form setSearch={setSearch}/>
+        <Form setSearchParams={setSearchParams}/>
         {movies && <MovieList movies={movies}/>}
         {isLoading && <Loader/>}
         {error && <div>{error}</div>}
