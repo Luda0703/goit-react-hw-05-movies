@@ -3,12 +3,10 @@ import MovieList from "components/MovieList/MovieList";
 import { useState, useEffect } from "react";
 import { useSearchParams } from 'react-router-dom';
 import { getMoviesQuery } from "servise/servise";
-import { Loader } from "components/Loader/Loader";
 
 
 const Movies = () => {
     const [movies, setMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(false); 
     const [error, setError] = useState(null); 
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -19,15 +17,12 @@ const Movies = () => {
         if (!currentQuery) return;
 
         const serchMovies = async () => {
-            setIsLoading (true);
             try {
                 const data = await getMoviesQuery(currentQuery);
                 setMovies(data.results);
             } catch (error) {
                 setError(error.massage);
-            } finally {
-                setIsLoading(false);
-            }
+            } 
         }
         serchMovies()
     }, [searchParams])
@@ -38,7 +33,6 @@ const Movies = () => {
         <>
         <Form setSearchParams={setSearchParams}/>
         {movies.length > 0 && <MovieList movies={movies}/>}
-        {isLoading && <Loader/>}
         {error && <div>{error}</div>}
         </>
     )

@@ -6,9 +6,7 @@ import { Loader } from 'components/Loader/Loader';
 
 const MovieDetailsList = ({ original_title, overview, genres, poster_path, vote_average }) => {
     const location = useLocation();
-    const backLinkRef = useRef(location.state?.from ?? '/');
-
-    // const { original_title, overview, genres, poster_path, vote_average } = movie;
+    const backLinkRef = useRef(location.state?.from ?? '/movies');
 
     return (
         <>
@@ -28,14 +26,10 @@ const MovieDetailsList = ({ original_title, overview, genres, poster_path, vote_
             </div>
             <ul>
             <li>
-            <NavLink to="cast" state={location.state}>
-              Cast<span>.</span>
-            </NavLink>
+            <NavLink to="cast" state={location.state}>Cast</NavLink>
           </li>
           <li>
-            <NavLink to="reviews" state={location.state}>
-              Reviews<span>.</span>
-            </NavLink>
+            <NavLink to="reviews" state={location.state}>Reviews</NavLink>
           </li>
         </ul>
         <Suspense fallback={<Loader/>}>
