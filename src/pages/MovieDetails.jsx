@@ -38,17 +38,7 @@ const MovieDetails = () => {
             </Link>
             {movies && (
             <div> 
-                {/* <img src={poster_path} alt={original_title}/> */}
-                <img
-                src={
-                poster_path
-                  ? `https://image.tmdb.org/t/p/w300${poster_path}`
-                  : `https://www.suryalaya.org/images/no_image.jpg`
-              }
-              width={320}
-              height={400}
-              alt="poster"
-              />
+                <img src={poster_path} alt={original_title}/>
                 <h1>{original_title}</h1>
                 <span>{vote_average}</span>
                 <p>{overview}</p>
