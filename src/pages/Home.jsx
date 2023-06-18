@@ -33,7 +33,7 @@ const Home = () => {
 
     return (
         <>
-        {movies.length > 0 && <MovieList movies={movies} />}
+        {movies && <MovieList movies={movies} />}
         {isLoading && <Loader />}
         {error && <div>{error}</div>}
         </>

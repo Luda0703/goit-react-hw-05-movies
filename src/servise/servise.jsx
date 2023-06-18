@@ -4,8 +4,8 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const KEY = `0481b46021a7a1a44f55c7836fc47fbf`;
 
 export async function getMovies(page=1) {
-    const {responce} = await axios.get(   
-      `${BASE_URL}/trending/movie/week?api_key=${KEY}&page=${page}&language=en-US`
+    const responce = await axios.get(   
+      `${BASE_URL}/trending/movie/day?api_key=${KEY}&page=${page}`
     );
     return responce.data;
 }
@@ -13,14 +13,21 @@ export async function getMovies(page=1) {
 
 export async function getMoviesQuery(query) {
   const responce = await axios.get(
-    `${BASE_URL}/search/movie?api_key=${KEY}&query=${query}&language=en-US`
+    `${BASE_URL}/search/movie?api_key=${KEY}&query=${query}`
   );
   return responce.data;
 }
 
 export async function getMoviesDetails(movie_id) {
   const responce = await axios.get(
-    `${BASE_URL}/movie/${movie_id}?api_key=${KEY}&language=en-US`
+    `${BASE_URL}/movie/${movie_id}?api_key=${KEY}`
+  );
+  return responce.data;
+}
+
+export async function getMoviesDetailsCast(movie_id) {
+  const responce = await axios.get(
+    `${BASE_URL}/movie/${movie_id}/credits?api_key=${KEY}`
   );
   return responce.data;
 }

@@ -21,7 +21,7 @@ const MovieDetails = () => {
             try {
               // console.log(movieId)
                 const data = await getMoviesDetails(movieId);
-                setMovie(data.results);
+                setMovie(data);
             } catch (error) {
                 setError(error.massage);
             } finally {
@@ -42,10 +42,13 @@ const MovieDetails = () => {
               <button >Go back</button>
             </Link>
             {movie && (
-            <div> 
-                <img src={movie.poster_path} alt={movie.original_title}/>
+             <div>
+                <img
+              src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+              alt={movie.title}
+            />
                 <h1>{movie.original_title}</h1>
-                <span>{movie.vote_average}</span>
+                <span>Rating: {movie.vote_average}</span>
                 <p>{movie.overview}</p>
                 <ul>
                 {movie.genres &&
@@ -56,10 +59,10 @@ const MovieDetails = () => {
              )} 
             <ul>
             <li>
-            <NavLink to="cast" state={location.state}>Cast</NavLink>
+            <NavLink to={`/movies/${movieId}/cast`} state={location.state}>Cast</NavLink>
           </li>
           <li>
-            <NavLink to="reviews" state={location.state}>Reviews</NavLink>
+            <NavLink to="/movies/:movieId/reviews" state={location.state}>Reviews</NavLink>
           </li>
         </ul>
         {isLoading && <Loader />}
