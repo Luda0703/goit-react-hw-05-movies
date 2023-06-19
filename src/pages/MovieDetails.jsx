@@ -80,10 +80,10 @@ const MovieDetails = () => {
              )} 
             <Ul>
             <Li>
-            <NavLink to="cast" state={backLinkLocationRef.current} >Cast</NavLink>
+            <NavLink to="cast" state={location.state} >Cast</NavLink>
           </Li>
           <Li>
-            <NavLink to='reviews' state={backLinkLocationRef.current}>Reviews</NavLink>
+            <NavLink to='reviews' state={location.state}>Reviews</NavLink>
           </Li>
         </Ul>
         {isLoading && <Loader />}
