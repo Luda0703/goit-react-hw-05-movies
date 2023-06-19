@@ -15,19 +15,20 @@ const Cast = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-        const serchMovieDetailsCast = async () => {
-            setIsLoading(true);
-            try {
-                const data = await getMoviesDetailsCast(movieId);
-                setCast(data.cast);
-            } catch (error) {
-                setError(error.massage);
-            } finally {
-              setIsLoading(false);
-            }
-        }
-        serchMovieDetailsCast();
+       
+        serchMovieDetailsCast(movieId);
     }, [movieId])
+    const serchMovieDetailsCast = async (movieId) => {
+        setIsLoading(true);
+        try {
+            const data = await getMoviesDetailsCast(movieId);
+            setCast(data.cast);
+        } catch (error) {
+            setError(error.massage);
+        } finally {
+          setIsLoading(false);
+        }
+    }
 
     return (
         <>

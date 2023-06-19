@@ -16,19 +16,20 @@ const Reviews = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-        const serchMovieDetailsRevievs = async () => {
-            setIsLoading(true);
-            try {
-                const data = await getMoviesDetailsReviews(movieId);
-                setReviews(data.results);
-            } catch (error) {
-                setError(error.massage);
-            } finally {
-              setIsLoading(false);
-            }
-        }
-        serchMovieDetailsRevievs();
+        
+        serchMovieDetailsRevievs(movieId);
     }, [movieId])
+    const serchMovieDetailsRevievs = async (movieId) => {
+        setIsLoading(true);
+        try {
+            const data = await getMoviesDetailsReviews(movieId);
+            setReviews(data.results);
+        } catch (error) {
+            setError(error.massage);
+        } finally {
+          setIsLoading(false);
+        }
+    }
 
     return (
         <>
