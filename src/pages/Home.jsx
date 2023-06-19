@@ -17,19 +17,20 @@ const Home = () => {
            return ;
         }
 
-        const getSearchMovies = async () => {
-            setIsLoading(true);
-            try {
-                const data = await getMovies();
-                setMovies(data.results);
-            } catch (error) {
-                setError(error.massage);
-            } finally {
-                setIsLoading(false);
-              }
-        }
+       
         getSearchMovies()
     }, [])
+    const getSearchMovies = async () => {
+        setIsLoading(true);
+        try {
+            const data = await getMovies();
+            setMovies(data.results);
+        } catch (error) {
+            setError(error.massage);
+        } finally {
+            setIsLoading(false);
+          }
+    }
 
     return (
         <>
