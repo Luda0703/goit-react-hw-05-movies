@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { getMovies } from "servise/servise";
 import MovieList from "components/MovieList/MovieList";
 import { Loader } from "components/Loader/Loader";
@@ -8,14 +8,14 @@ const Home = () => {
     const [movies, setMovies] = useState([]);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const isFirstRender = useRef(true);
+    // const isFirstRender = useRef(true);
     
 
     useEffect(() => {
-        if(isFirstRender.current) {
-           isFirstRender.current = false;
-           return ;
-        }
+        // if(isFirstRender.current) {
+        //    isFirstRender.current = false;
+        //    return ;
+        // }
 
        
         getSearchMovies()
