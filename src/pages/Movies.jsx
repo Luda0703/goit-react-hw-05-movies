@@ -18,19 +18,20 @@ const Movies = () => {
         // console.log({currentQuery})
         if (!currentQuery) return;
 
-        const serchMovies = async () => {
-            setIsLoading(true);
-            try {
-                const data = await getMoviesQuery(currentQuery);
-                setMovies(data.results);
-            } catch (error) {
-                setError(error.massage);
-            } finally {
-                setIsLoading(false);
-              }
-        }
-        serchMovies()
+        
+        serchMovies(currentQuery)
     }, [searchParams])
+    const serchMovies = async (currentQuery) => {
+        setIsLoading(true);
+        try {
+            const data = await getMoviesQuery(currentQuery);
+            setMovies(data.results);
+        } catch (error) {
+            setError(error.massage);
+        } finally {
+            setIsLoading(false);
+          }
+    }
 
 
 

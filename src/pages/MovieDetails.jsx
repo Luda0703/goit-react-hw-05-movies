@@ -29,20 +29,22 @@ const MovieDetails = () => {
     const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
 
     useEffect(() => {
-        const serchMovieDetails = async () => {
-          setIsLoading(true);
-            try {
-                const data = await getMoviesDetails(movieId);
-                setMovie(data);
-            } catch (error) {
-                setError(error.massage);
-            } finally {
-              setIsLoading(false);
-            }
-        }
-        serchMovieDetails()
+        
+        serchMovieDetails(movieId)
 
     }, [movieId])
+
+    const serchMovieDetails = async (movieId) => {
+      setIsLoading(true);
+        try {
+            const data = await getMoviesDetails(movieId);
+            setMovie(data);
+        } catch (error) {
+            setError(error.massage);
+        } finally {
+          setIsLoading(false);
+        }
+    }
 
     // const {original_title, overview, genres, poster_path, vote_average} = movie;
 
