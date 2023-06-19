@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Notiflix from 'notiflix';
+import PropTypes from 'prop-types';
+import {Input, FormInput, Button} from './Form.styled'
 
 const Form = ({setSearchParams}) => {
     const [query, setQuery] = useState('');
@@ -18,20 +20,26 @@ const Form = ({setSearchParams}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input 
+        <FormInput onSubmit={handleSubmit}>
+            <Input 
             type="text"
             value={query}
             onChange={handleChange}
             placeholder="Name movie"
             autoFocus
             />
-            <button
+            <Button
             type='submit'
             disabled={!query}
-            >Search</button>
-        </form>
+            >Search
+            </Button>
+        </FormInput>
     )
+
+}
+
+Form.propTypes = {
+    setSearchParams:PropTypes.func.isRequired
 
 }
 

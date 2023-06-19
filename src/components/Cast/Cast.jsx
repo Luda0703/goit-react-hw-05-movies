@@ -1,7 +1,12 @@
-const { useState, useEffect } = require("react");
-const { useParams } = require("react-router-dom");
-const { getMoviesDetailsCast } = require("servise/servise");
 import { Loader } from "components/Loader/Loader";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getMoviesDetailsCast } from "servise/servise";
+import { 
+    CastList,
+    CastImg,
+    CastP
+ } from "./Cast.styled";
 
 const Cast = () => {
     const [cast, setCast] = useState([]);
@@ -13,8 +18,8 @@ const Cast = () => {
         const serchMovieDetailsCast = async () => {
             setIsLoading(true);
             try {
-                const cast = await getMoviesDetailsCast(movieId);
-                setCast(cast);
+                const data = await getMoviesDetailsCast(movieId);
+                setCast(data.cast);
             } catch (error) {
                 setError(error.massage);
             } finally {
@@ -26,18 +31,22 @@ const Cast = () => {
 
     return (
         <>
-        <ul>
-        {cast && cast.map(({ id, profile_path, original_name, character }) => (
+        <CastList>
+        {cast.map(({ id, profile_path, original_name, character }) => (
             <li key={id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w200/${profile_path}`}
-                alt={original_name}
-              />
-              <p> Actor: {original_name}</p>
-              <p>Character: {character}</p>
+              <CastImg
+                    src={
+                      profile_path
+                        ? `https://image.tmdb.org/t/p/w200${profile_path}`
+                        : `https://www.suryalaya.org/images/no_image.jpg`
+                    }
+                    alt={original_name}   
+                  />
+              <CastP> Actor: {original_name}</CastP>
+              <CastP>Character: {character}</CastP>
             </li>
           ))}
-        </ul>
+        </CastList>
         {isLoading && <Loader />}
         {error && <div>{error}</div>}
         </>

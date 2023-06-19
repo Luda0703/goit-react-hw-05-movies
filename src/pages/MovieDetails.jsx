@@ -1,11 +1,24 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, NavLink } from 'react-router-dom';
 import { getMoviesDetails } from "servise/servise";
-// import MovieDetailsList from "components/MovieDetailsList/MovieDetailsList";
 import { Loader } from "components/Loader/Loader";
 import { useParams } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
+import { 
+  Button, 
+  Container, 
+  DivImg, 
+  Title, 
+  Raiting, 
+  Overview, 
+  Img, 
+  List, 
+  ListItem,
+  Ul, 
+  Li
+
+} from "./MovieDetails.styled";
 
 const MovieDetails = () => {
     const [movie, setMovie] = useState([]);
@@ -19,7 +32,6 @@ const MovieDetails = () => {
         const serchMovieDetails = async () => {
           setIsLoading(true);
             try {
-              // console.log(movieId)
                 const data = await getMoviesDetails(movieId);
                 setMovie(data);
             } catch (error) {
@@ -36,35 +48,42 @@ const MovieDetails = () => {
 
     return (
         <>
-        {/* <MovieDetailsList /> */}
         <main>
             <Link to={backLinkLocationRef.current}>
-              <button >Go back</button>
+              <Button >Go back</Button>
             </Link>
             {movie && (
-             <div>
-                <img
-              src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+              <Container>
+             <DivImg>
+                <Img
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+                  : `https://www.suryalaya.org/images/no_image.jpg`
+              }
               alt={movie.title}
             />
-                <h1>{movie.original_title}</h1>
-                <span>Rating: {movie.vote_average}</span>
-                <p>{movie.overview}</p>
-                <ul>
+            </DivImg>
+            <div>
+                <Title>{movie.original_title}</Title>
+                <Raiting>Rating: {movie.vote_average}</Raiting>
+                <Overview>{movie.overview}</Overview>
+                <List>
                 {movie.genres &&
-                  movie.genres.map(({ id, name }) => <li key={id}>{name}</li>
+                  movie.genres.map(({ id, name }) => <ListItem key={id}>{name}</ListItem>
                   )}
-                </ul>
+                </List>
             </div>
+            </Container>
              )} 
-            <ul>
-            <li>
-            <NavLink to={`/movies/${movieId}/cast`} state={location.state}>Cast</NavLink>
-          </li>
-          <li>
-            <NavLink to="/movies/:movieId/reviews" state={location.state}>Reviews</NavLink>
-          </li>
-        </ul>
+            <Ul>
+            <Li>
+            <NavLink to="cast" state={backLinkLocationRef.current} >Cast</NavLink>
+          </Li>
+          <Li>
+            <NavLink to='reviews' state={backLinkLocationRef.current}>Reviews</NavLink>
+          </Li>
+        </Ul>
         {isLoading && <Loader />}
         {error && <div>{error}</div>}
         <Suspense fallback={<Loader />}>
