@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getMoviesDetails } from "servise/servise";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
+import { useRef } from 'react';
 
 
 export const useMovieDetails = () => {
@@ -8,6 +9,9 @@ export const useMovieDetails = () => {
     const [error, setError] = useState(null); 
     const [isLoading, setIsLoading] = useState(false);
     const { movieId } = useParams();
+
+    const location = useLocation();
+    const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
     
 
     useEffect(() => {
@@ -25,6 +29,6 @@ export const useMovieDetails = () => {
           setIsLoading(false);
         }
     }
-return { movie, error, isLoading }
+return { movie, error, isLoading, backLinkLocationRef, location }
 
 }

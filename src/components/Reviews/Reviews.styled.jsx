@@ -15,3 +15,8 @@ font-size: 16px;
 color: #191970;
 width: 1200px;
 `
+export const P = styled.p`
+font-weight: 600;
+font-size: 24px;
+color: #191970;
+`
