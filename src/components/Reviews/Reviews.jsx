@@ -39,7 +39,7 @@ const Reviews = () => {
               <li key={id}>
                 <Autor>{author}</Autor>
                 <Content>{content}</Content>
-              </li>
+              </li> 
         ))}
         </ReviewsList>
         {isLoading && <Loader />}

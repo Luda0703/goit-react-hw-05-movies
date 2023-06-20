@@ -1,14 +1,17 @@
 import { Loader } from "components/Loader/Loader";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getMoviesDetailsCast } from "servise/servise";
+// import { useCast } from '../../hooks/useCast'
 import { 
     CastList,
     CastImg,
     CastP
  } from "./Cast.styled";
 
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getMoviesDetailsCast } from "../../servise/servise";
+
 const Cast = () => {
+    // const { cast, error, isLoading } = useCast
     const [cast, setCast] = useState([]);
     const [error, setError] = useState(null); 
     const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +42,7 @@ const Cast = () => {
                     src={
                       profile_path
                         ? `https://image.tmdb.org/t/p/w200${profile_path}`
-                        : `https://www.suryalaya.org/images/no_image.jpg`
+                        : `https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg`
                     }
                     alt={original_name}   
                   />

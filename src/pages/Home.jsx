@@ -1,36 +1,10 @@
-import { useState, useEffect } from "react";
-import { getMovies } from "servise/servise";
+import { useHome } from "hooks/useHome";
 import MovieList from "components/MovieList/MovieList";
 import { Loader } from "components/Loader/Loader";
 
 
 const Home = () => {
-    const [movies, setMovies] = useState([]);
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    // const isFirstRender = useRef(true);
-    
-
-    useEffect(() => {
-        // if(isFirstRender.current) {
-        //    isFirstRender.current = false;
-        //    return ;
-        // }
-
-       
-        getSearchMovies()
-    }, [])
-    const getSearchMovies = async () => {
-        setIsLoading(true);
-        try {
-            const data = await getMovies();
-            setMovies(data.results);
-        } catch (error) {
-            setError(error.massage);
-        } finally {
-            setIsLoading(false);
-          }
-    }
+    const { movies, error, isLoading } = useHome();
 
     return (
         <>

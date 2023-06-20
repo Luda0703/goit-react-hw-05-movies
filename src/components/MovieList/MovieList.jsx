@@ -8,10 +8,10 @@ const MovieList = ({ movies }) => {
   return (
     <>
       <Ul>
-        {movies && movies.map(({ id, original_title }) => (
+        {movies && movies.map(({ id, title, name, original_title }) => (
           <li key={id}>
             <Link to={`/movies/${id}`} state={{ from: location}}>
-              <h3>{original_title}</h3>
+              <h3>{title || name || original_title}</h3>
             </Link>
           </li>
         ))}
@@ -24,7 +24,7 @@ MovieList.propTypes = {
     movies: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
-        original_title: PropTypes.string.isRequired,
+        original_title: PropTypes.string,
       })
     ).isRequired,
   };
