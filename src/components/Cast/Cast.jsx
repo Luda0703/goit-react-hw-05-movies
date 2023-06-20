@@ -15,9 +15,9 @@ const Cast = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-       
         serchMovieDetailsCast(movieId);
     }, [movieId])
+    
     const serchMovieDetailsCast = async (movieId) => {
         setIsLoading(true);
         try {

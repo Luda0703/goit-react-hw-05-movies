@@ -15,12 +15,11 @@ const Movies = () => {
 
     useEffect(() => {
         const currentQuery = searchParams.get('query');
-        // console.log({currentQuery})
         if (!currentQuery) return;
 
-        
         serchMovies(currentQuery)
     }, [searchParams])
+
     const serchMovies = async (currentQuery) => {
         setIsLoading(true);
         try {
@@ -32,8 +31,6 @@ const Movies = () => {
             setIsLoading(false);
           }
     }
-
-
 
     return (
         <>

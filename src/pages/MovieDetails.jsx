@@ -29,9 +29,7 @@ const MovieDetails = () => {
     const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
 
     useEffect(() => {
-        
         serchMovieDetails(movieId)
-
     }, [movieId])
 
     const serchMovieDetails = async (movieId) => {
@@ -45,8 +43,6 @@ const MovieDetails = () => {
           setIsLoading(false);
         }
     }
-
-    // const {original_title, overview, genres, poster_path, vote_average} = movie;
 
     return (
         <>

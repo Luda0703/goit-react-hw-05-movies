@@ -16,9 +16,9 @@ const Reviews = () => {
     const { movieId } = useParams();
 
     useEffect(() => {
-        
         serchMovieDetailsRevievs(movieId);
     }, [movieId])
+
     const serchMovieDetailsRevievs = async (movieId) => {
         setIsLoading(true);
         try {
