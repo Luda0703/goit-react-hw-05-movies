@@ -1,4 +1,14 @@
 import styled from '@emotion/styled';
+import { NavLink } from "react-router-dom";
+
+export const StyledLink = styled(NavLink)`
+color: #191970;
+text-decoration: none;
+
+&.active {
+  color: #0000FF;
+}
+`;
 
 export const HeaderNaw = styled.header`
 top: 0;
@@ -30,21 +40,5 @@ gap: 50px;
 
 `
 export const Li = styled.li`
-    a{
-    color: #191970;
-    text-decoration: none;
-    }
-    a:hover{
-    color: #0000FF;
-    text-decoration: none;
-    }
-    a:visited{
-    color: #191970;
-    text-decoration: none;
-    }
-    a:active{
-    color: #0000FF;
-    background-color: #00FFFF;
-    text-decoration: none;
-    }
+ 
 `

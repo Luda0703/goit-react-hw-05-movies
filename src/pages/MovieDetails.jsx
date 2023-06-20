@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Loader } from "components/Loader/Loader";
 // import { useMovieDetails } from 'hooks/useMovieDetails';
 import { Outlet } from "react-router-dom";
@@ -15,7 +15,8 @@ import {
   List, 
   ListItem,
   Ul, 
-  Li
+  Li,
+  StyledLink
 
 } from "./MovieDetails.styled";
 
@@ -82,10 +83,10 @@ const serchMovieDetails = async (movieId) => {
              )} 
             <Ul>
             <Li>
-            <NavLink to="cast" state={location.state} >Cast</NavLink>
+            <StyledLink to="cast" state={location.state} >Cast</StyledLink>
           </Li>
           <Li>
-            <NavLink to='reviews' state={location.state}>Reviews</NavLink>
+            <StyledLink to='reviews' state={location.state}>Reviews</StyledLink>
           </Li>
         </Ul>
         {isLoading && <Loader />}

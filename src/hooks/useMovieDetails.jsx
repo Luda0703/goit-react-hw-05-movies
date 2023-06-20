@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getMoviesDetails } from "servise/servise";
 import { useParams } from "react-router-dom";
 
+
 export const useMovieDetails = () => {
     const [movie, setMovie] = useState([]);
     const [error, setError] = useState(null); 
